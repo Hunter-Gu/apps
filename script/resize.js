@@ -21,7 +21,7 @@ function resize (file, size) {
     .resize(size, size, { fit: 'inside' })
     .toFormat('png')
     .toBuffer()
-    .then(buf => imagemin.buffer(buf)).catch(err => {
+    .then(buf => imagemin.buffer(buf, { plugins: [ imageminPngquant() ]})).catch(err => {
       console.log(err)
     })
     // .then(buf => imagemin.buffer(buf, { plugins: [ imageminPngquant() ] }))
