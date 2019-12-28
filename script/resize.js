@@ -21,7 +21,7 @@ function resize (file, size) {
     .resize(size, size, { fit: 'inside' })
     .toFormat('png')
     .toBuffer()
-    .then(buf => imagemin.buffer(buf, { plugins: [ imageminPngquant() ]})).catch(err => {
+    .then(buf => imagemin.buffer(buf, { plugins: [ imageminPngquant() ]})).then((err) => {
       console.log(err)
     })
     // .then(buf => imagemin.buffer(buf, { plugins: [ imageminPngquant() ] }))
@@ -29,9 +29,9 @@ function resize (file, size) {
 }
 
 const resizes = icons.map(icon => resize(icon, 32))
-  .concat(icons.map(icon => resize(icon, 64)))
-  .concat(icons.map(icon => resize(icon, 128)))
-  .concat(icons.map(icon => resize(icon, 256)))
+  // .concat(icons.map(icon => resize(icon, 64)))
+  // .concat(icons.map(icon => resize(icon, 128)))
+  // .concat(icons.map(icon => resize(icon, 256)))
 
 Promise.all(resizes)
   .then(function (results) {
