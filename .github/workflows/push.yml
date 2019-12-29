@@ -16,6 +16,8 @@ jobs:
         node-version: 12.x
     - name: npm install, build, and test
       # if: github['ref'] == 'refs/heads/master'
+      env:
+        NODE_OPTIONS: --max_old_space_size=4096
       run: |
         npm ci
         npm run test-all
